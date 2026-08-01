@@ -13,7 +13,7 @@
             "type": "Win32",
             "win32": {
                 "class_regex": ".*",
-                "window_regex": "LCC_MOD_ToolBox",
+                "window_regex": ".*",
                 "screencap": "PrintWindow",
                 "mouse": "PostMessageWithCursorPos",
                 "keyboard": "PostMessageWithCursorPos"
@@ -28,13 +28,6 @@
             ]
         }
     ],
-    // 可选的 agent 示例
-    // "agent": {
-    //     "child_exec": "python",
-    //     "child_args": [
-    //         "./agent/main.py"
-    //     ]
-    // },
     "task": [
         {
             "name": "普通任务",
