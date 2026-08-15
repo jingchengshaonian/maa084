@@ -1,37 +1,96 @@
+import json
+import re
+
 from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 
 
-@AgentServer.custom_recognition("my_reco_222")
-class MyRecongition(CustomRecognition):
+@AgentServer.custom_recognition("OcrCompareCount")
+class OcrCompareCount(CustomRecognition):
+    """
+    OCR 识别界面中的数字，与目标值比较，达标时返回命中。
+
+    参数格式:
+    {
+        "target": 3,               // 目标次数
+        "roi": [x, y, w, h],       // 数字所在区域
+        "expected": "\\d+",        // OCR 期望的正则，默认匹配任意数字
+        "compare": "ge"            // 比较方式: ge(>=) le(<=) gt(>) lt(<) eq(==)
+    }
+
+    命中条件（默认 ge）: 识别到的数字 >= target
+    """
 
     def analyze(
         self,
         context: Context,
         argv: CustomRecognition.AnalyzeArg,
-    ) -> CustomRecognition.AnalyzeResult:
+    ):
+        try:
+            params = json.loads(argv.custom_recognition_param) if argv.custom_recognition_param else {}
+            target = params.get("target", 0)
+            roi = params.get("roi", [716,305,65,35])
+            expected = params.get("expected", "\\d+")
+            compare = params.get("compare", "ge")
+            print(f"[OcrCompareCount] 参数: target={target}, roi={roi}, expected={expected}, compare={compare}")
 
-        reco_detail = context.run_recognition(
-            "MyCustomOCR",
-            argv.image,
-            pipeline_override={"MyCustomOCR": {"roi": [100, 100, 200, 300]}},
-        )
+            # 用内部 OCR 节点识别数字
+            reco_detail = context.run_recognition(
+                "OcrCompareCount_OCR",
+                argv.image,
+                pipeline_override={
+                    "OcrCompareCount_OCR": {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": roi,
+                                "expected": [expected],
+                                "threshold": 0.3
+                            }
+                        }
+                    }
+                }
+            )
 
-        # context is a reference, will override the pipeline for whole task
-        context.override_pipeline({"MyCustomOCR": {"roi": [1, 1, 114, 514]}})
-        # context.run_recognition ...
+            if not reco_detail or not reco_detail.hit:
+                print(f"[OcrCompareCount] OCR未识别到内容, reco_detail={reco_detail}")
+                return None
 
-        # make a new context to override the pipeline, only for itself
-        new_context = context.clone()
-        new_context.override_pipeline({"MyCustomOCR": {"roi": [100, 200, 300, 400]}})
-        reco_detail = new_context.run_recognition("MyCustomOCR", argv.image)
+            text = reco_detail.best_result.text
+            print(f"[OcrCompareCount] OCR原始识别: '{text}'")
 
-        click_job = context.tasker.controller.post_click(10, 20)
-        click_job.wait()
+            # 从识别文本中提取数字
+            match = re.search(r"\d+", text)
+            if not match:
+                print(f"[OcrCompareCount] 文本中未找到数字: '{text}'")
+                return None
 
-        context.override_next(argv.node_name, ["TaskA", "TaskB"])
+            current = int(match.group())
+            print(f"[OcrCompareCount] 提取数字: {current}, 比较: {current} {compare} {target}")
 
-        return CustomRecognition.AnalyzeResult(
-            box=(0, 0, 100, 100), detail="Hello World!"
-        )
+            # 比较运算
+            ops = {
+                "ge": current >= target,
+                "le": current <= target,
+                "gt": current > target,
+                "lt": current < target,
+                "eq": current == target
+            }
+
+            result = ops.get(compare, False)
+            print(f"[OcrCompareCount] 比较结果: {result}")
+
+            if result:
+                return CustomRecognition.AnalyzeResult(
+                    box=reco_detail.box,
+                    detail=f"OCR识别: {current} {compare} {target} -> 命中"
+                )
+
+            return None
+
+        except Exception as e:
+            import traceback
+            print(f"[OcrCompareCount] 识别失败: {e}")
+            print(traceback.format_exc())
+            return None

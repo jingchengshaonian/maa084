@@ -1,0 +1,187 @@
+{
+    "换饼换体力entry": {
+        "next": [
+            "进入换饼界面"
+        ]
+    },
+    "进入换饼界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_299_628_178_57__249_578_278_142.png",
+                "roi": [
+                    249,
+                    578,
+                    278,
+                    142
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "进入狂气换体力界面"
+        ]
+    },
+    "进入狂气换体力界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_597_216_85_20__547_166_185_120.png",
+                "roi": [
+                    547,
+                    166,
+                    185,
+                    120
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "兑换循环"
+        ]
+    },
+    "兑换循环": {
+        "next": [
+            "识别当前次数",
+            "[JumpBack]识别兑换按钮可点击",
+            "进入体力换饼界面"
+        ]
+    },
+    "识别当前次数": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "OcrCompareCount",
+                "custom_recognition_param": {
+                    "target": "{次数}",
+                    "roi": [716,305,65,35],
+                    "expected": "\\d+",
+                    "compare": "ge"
+                }
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "进入体力换饼界面"
+        ]
+    },
+    "识别兑换按钮可点击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_655_564_217_41__605_514_317_141.png",
+                "roi": [
+                    605,
+                    514,
+                    317,
+                    141
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "进入体力换饼界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_466_216_77_21__416_166_177_121.png",
+                "roi": [
+                    416,
+                    166,
+                    177,
+                    121
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "设置最大饼数"
+        ]
+    },
+    "设置最大饼数": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_789_362_40_36__739_312_140_136.png",
+                "roi": [
+                    739,
+                    312,
+                    140,
+                    136
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "识别Conform可点击"
+        ]
+    },
+    "识别Conform可点击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_655_564_217_41__605_514_317_141.png",
+                "roi": [
+                    605,
+                    514,
+                    317,
+                    141
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "退出换饼界面"
+        ]
+    },
+    "退出换饼界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_413_562_217_40__363_512_317_140.png",
+                "roi": [
+                    363,
+                    512,
+                    317,
+                    140
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "确认回到主界面"
+        ]
+    },
+    "确认回到主界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,
+                    594,
+                    176,
+                    172
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "StopTask",
+        "timeout": 3000
+    }
+}

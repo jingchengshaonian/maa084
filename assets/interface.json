@@ -1,22 +1,22 @@
 {
     "interface_version": 2,
-    "name": "MaaXXX",
+    "name": "Maa084",
     "description": "这是一个使用 MaaFramework 创建的084自动化工具。",
     "contact": "QQ群: 无",
     "license": "MIT",
     "welcome": "首次使用！欢迎使用 MAA084!",
     "github": "https://github.com/jingchengshaonian/maa084",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "controller": [
         {
-            "name": "桌面端",
+            "name": "pc端",
             "type": "Win32",
             "win32": {
                 "class_regex": ".*",
-                "window_regex": ".*",
-                "screencap": "PrintWindow",
-                "mouse": "PostMessageWithCursorPos",
-                "keyboard": "PostMessageWithCursorPos"
+                "window_regex": "LimbusCompany",
+                "screencap": "FramePool",
+                "mouse": "Seize",
+                "keyboard": "SendMessage"
             }
         }
     ],
@@ -28,52 +28,151 @@
             ]
         }
     ],
+    "agent": {
+        "child_exec": "d:/projects/maa/maa084/.venv/Scripts/python.exe",
+        "child_args": ["-u", "./../agent/main.py"]
+    },
     "task": [
         {
-            "name": "普通任务",
-            "entry": "MyTask1"
-        },
-        {
-            "name": "选项任务",
-            "entry": "MyTask2",
+            "name": "启动游戏",
+            "entry": "启动游戏entry",
             "option": [
-                "任务选项1"
+                "启动模式",
+                "游戏路径",
+                "lalc脚本路径",
+                "lccmod路径"
             ]
         },
         {
-            "name": "参数任务",
-            "entry": "MyTask3",
+            "name": "换饼换体力",
+            "entry": "换饼换体力entry",
             "option": [
-                "任务选项1"
-            ],
-            "pipeline_override": {}
+                "兑换次数"
+            ]
         },
         {
-            "name": "带Custom的任务",
-            "entry": "MyTask4"
+            "name": "领取奖励",
+            "entry": "领取奖励entry"
         }
     ],
     "option": {
-        "任务选项1": {
+        "启动模式": {
             "type": "select",
             "cases": [
                 {
-                    "name": "文本1",
+                    "name": "lalc模式",
+                    "label": "LALC 脚本模式（英文游戏）",
+                    "description": "打开游戏和 LALC 脚本，运行脚本（游戏保持英文）",
                     "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
+                        "启动游戏entry": {
+                            "next": [
+                                "识别主界面",
+                                "lalc模式启动"
+                            ]
                         }
                     }
                 },
                 {
-                    "name": "文本2",
+                    "name": "汉化模式",
+                    "label": "汉化软件模式（中文游戏）",
+                    "description": "打开汉化软件更新汉化，更新后点击打开游戏按钮启动游戏",
                     "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
+                        "启动游戏entry": {
+                            "next": [
+                                "识别主界面",
+                                "汉化模式启动"
+                            ]
                         }
                     }
                 }
-            ]
+            ],
+            "default_case": "lalc模式"
+        },
+        "游戏路径": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "路径",
+                    "label": "游戏可执行文件路径",
+                    "description": "LimbusCompany 游戏的 exe 文件完整路径",
+                    "default": "",
+                    "pipeline_type": "string"
+                }
+            ],
+            "pipeline_override": {
+                "启动游戏进程": {
+                    "action": {
+                        "param": {
+                            "exec": "{路径}"
+                        }
+                    }
+                }
+            }
+        },
+        "lalc脚本路径": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "路径",
+                    "label": "LALC 脚本可执行文件路径",
+                    "description": "LALC 自动化脚本的 exe 文件完整路径",
+                    "default": "",
+                    "pipeline_type": "string"
+                }
+            ],
+            "pipeline_override": {
+                "启动lalc脚本": {
+                    "action": {
+                        "param": {
+                            "exec": "{路径}"
+                        }
+                    }
+                }
+            }
+        },
+        "lccmod路径": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "路径",
+                    "label": "汉化软件可执行文件路径",
+                    "description": "LixAssistantLimbusCompany 汉化工具的 exe 文件完整路径",
+                    "default": "",
+                    "pipeline_type": "string"
+                }
+            ],
+            "pipeline_override": {
+                "启动汉化软件": {
+                    "action": {
+                        "param": {
+                            "exec": "{路径}"
+                        }
+                    }
+                }
+            }
+        },
+        "兑换次数": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "次数",
+                    "label": "狂气兑换体力次数",
+                    "description": "已兑换次数达到此值后自动退出循环（通过OCR识别界面数字判断）",
+                    "default": "1",
+                    "pipeline_type": "int"
+                }
+            ],
+            "pipeline_override": {
+                "识别当前次数": {
+                    "recognition": {
+                        "param": {
+                            "custom_recognition_param": {
+                                "target": "{次数}"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
