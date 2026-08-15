@@ -53,6 +53,10 @@
         {
             "name": "领取奖励",
             "entry": "领取奖励entry"
+        },
+        {
+            "name": "刷经验本",
+            "entry": "刷经验本entry"
         }
     ],
     "option": {

@@ -15,12 +15,106 @@
             }
         },
         "action": "Click",
-        "post_delay": 2000,
+        "post_delay": 1000,
         "next": [
-            "结束"
+            "进入小奖励界面"
         ]
     },
-    "结束":{
-        "action": "StopTask"
+    "进入小奖励界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_313_46_119_23__263_0_219_119.png",
+                "roi": [263,0,219,119],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "进入日常奖励界面"
+        ]
+    },
+    "进入日常奖励界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_258_229_26_57__208_179_126_157.png",
+                "roi": [208,179,126,157],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "进入周常奖励界面"
+        ]
+    },
+    "进入周常奖励界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_257_359_28_81__207_309_128_181.png",
+                "roi": [207,309,128,181],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "进入大奖励界面"
+        ]
+    },
+    "进入大奖励界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_178_44_116_26__128_0_216_120.png",
+                "roi": [128,0,216,120],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "退出奖励界面"
+        ]
+    },
+    "退出奖励界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_69_37_61_34__19_0_161_121.png",
+                "roi": [19,0,161,121],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "确认回到主界面（领取奖励）"
+        ]
+    },
+    "确认回到主界面（领取奖励）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,
+                    594,
+                    176,
+                    172
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "StopTask",
+        "timeout": 3000
     }
 }

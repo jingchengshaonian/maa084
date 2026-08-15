@@ -1,0 +1,72 @@
+{
+    "刷镜牢entry": {
+        "next": [
+            "进入战斗主界面"
+        ]
+    },
+    "进入战斗主界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗主界面_389_176_119_25__339_126_219_125.png",
+                "roi": [339,126,219,125],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "StopTask",
+        "post_delay": 1000,
+        "next": [
+            "进入镜牢界面"
+        ]
+    },
+    "进入镜牢界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [895, 594, 176, 172],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "退出镜牢主界面"
+        ]
+    },
+    "退出镜牢主界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [895, 594, 176, 172],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "确认回到战斗主界面（刷经验本）"
+        ]
+    },
+    "确认回到战斗主界面（刷经验本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,
+                    594,
+                    176,
+                    172
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "StopTask",
+        "timeout": 3000
+    }
+}

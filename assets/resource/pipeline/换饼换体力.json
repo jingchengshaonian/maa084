@@ -164,10 +164,10 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
-            "确认回到主界面"
+            "确认回到主界面（换饼换体力）"
         ]
     },
-    "确认回到主界面": {
+    "确认回到主界面（换饼换体力）": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
