@@ -42,8 +42,7 @@
             "param": {
                 "template": "领取每日奖励页面_258_229_26_57__208_179_126_157.png",
                 "roi": [208,179,126,157],
-                "threshold": 0.85,
-                "green_mask": true
+                "threshold": 0.85
             }
         },
         "action": "Click",
@@ -58,8 +57,7 @@
             "param": {
                 "template": "领取每日奖励页面_257_359_28_81__207_309_128_181.png",
                 "roi": [207,309,128,181],
-                "threshold": 0.85,
-                "green_mask": true
+                "threshold": 0.85
             }
         },
         "action": "Click",
@@ -74,8 +72,7 @@
             "param": {
                 "template": "领取每日奖励页面_178_44_116_26__128_0_216_120.png",
                 "roi": [128,0,216,120],
-                "threshold": 0.85,
-                "green_mask": true
+                "threshold": 0.85
             }
         },
         "action": "Click",
@@ -90,8 +87,7 @@
             "param": {
                 "template": "领取每日奖励页面_69_37_61_34__19_0_161_121.png",
                 "roi": [19,0,161,121],
-                "threshold": 0.85,
-                "green_mask": true
+                "threshold": 0.85
             }
         },
         "action": "Click",

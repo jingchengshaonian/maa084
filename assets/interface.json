@@ -57,12 +57,29 @@
         {
             "name": "刷经验本",
             "entry": "刷经验本entry"
+        },
+        {
+            "name": "刷镜牢",
+            "entry": "刷镜牢entry"
         }
     ],
     "option": {
         "启动模式": {
             "type": "select",
             "cases": [
+                {
+                    "name": "直接启动",
+                    "label": "仅打开游戏",
+                    "description": "仅打开游戏",
+                    "pipeline_override": {
+                        "启动游戏entry": {
+                            "next": [
+                                "识别主界面",
+                                "识别开始界面"
+                            ]
+                        }
+                    }
+                },
                 {
                     "name": "lalc模式",
                     "label": "LALC 脚本模式（英文游戏）",

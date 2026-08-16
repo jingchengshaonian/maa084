@@ -1,20 +1,45 @@
 {
     "刷经验本entry": {
         "next": [
-            "进入战斗主界面"
+            "进入战斗主界面（刷经验本）",
+            "检查战斗主界面（刷经验本）"
         ]
     },
-    "进入战斗主界面": {
+    "进入战斗主界面（刷经验本）": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "主界面_945_651_76_72__895_594_176_172.png",
-                "roi": [895, 594, 176, 172],
-                "threshold": 0.85,
-                "green_mask": true
+                "roi": [
+                    895,
+                    594,
+                    176,
+                    172
+                ],
+                "threshold": 0.85
             }
         },
-        "action": "StopTask",
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "进入经验本界面"
+        ]
+    },
+    "检查战斗主界面（刷经验本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗主界面_957_620_49_47__907_570_149_147.png",
+                "roi": [
+                    907,
+                    570,
+                    149,
+                    147
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
         "post_delay": 1000,
         "next": [
             "进入经验本界面"
@@ -25,7 +50,12 @@
             "type": "TemplateMatch",
             "param": {
                 "template": "战斗主界面_389_176_119_25__339_126_219_125.png",
-                "roi": [339,126,219,125],
+                "roi": [
+                    339,
+                    126,
+                    219,
+                    125
+                ],
                 "threshold": 0.85,
                 "green_mask": true
             }
@@ -40,10 +70,14 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "主界面_945_651_76_72__895_594_176_172.png",
-                "roi": [895, 594, 176, 172],
-                "threshold": 0.85,
-                "green_mask": true
+                "template": "经验本主界面_72_35_47_25__22_0_147_110.png",
+                "roi": [
+                    22,
+                    0,
+                    147,
+                    110
+                ],
+                "threshold": 0.85
             }
         },
         "action": "Click",
@@ -56,12 +90,12 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "template": "战斗主界面_957_620_49_47__907_570_149_147.png",
                 "roi": [
-                    895,
-                    594,
-                    176,
-                    172
+                    907,
+                    570,
+                    149,
+                    147
                 ],
                 "threshold": 0.85
             }
