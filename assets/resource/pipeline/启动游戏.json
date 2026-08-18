@@ -7,17 +7,6 @@
             "汉化模式启动"
         ]
     },
-    "识别主界面": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "主界面_945_651_76_72__895_594_176_172.png",
-                "roi": [895, 594, 176, 172],
-                "threshold": 0.85
-            }
-        },
-        "action": "StopTask"
-    },
     "lalc模式启动": {
         "recognition": "DirectHit",
         "action": "DoNothing",
@@ -140,8 +129,38 @@
             "识别主界面"
         ]
     },
-
     "识别开始界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "开始界面_351_647_113_15__301_597_213_115.png",
+                "roi": [301,597,213,115],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 2000,
+        "next": [
+            "进入主界面"
+        ]
+    },
+    "识别加载界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "加载界面_1088_667_145_40__1038_617_245_140.png",
+                "roi": [1038, 617, 245, 140],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 2000,
+        "next": [
+            "识别主界面",
+            "识别加载界面"
+        ]
+    },
+    "进入主界面": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -152,12 +171,14 @@
             }
         },
         "action": "Click",
-        "post_delay": 2000,
+        "post_delay": 4000,
         "next": [
-            "等待进入主界面"
+            "识别开始界面",
+            "识别加载界面",
+            "识别主界面"
         ]
     },
-    "等待进入主界面": {
+    "识别主界面": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
