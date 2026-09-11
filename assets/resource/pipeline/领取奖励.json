@@ -1,6 +1,26 @@
 {
     "领取奖励entry": {
         "next": [
+            "识别主界面（领取奖励）"
+        ]
+    },
+    "识别主界面（领取奖励）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,
+                    594,
+                    176,
+                    172
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 1000,
+        "next": [
             "进入奖励界面"
         ]
     },
@@ -17,7 +37,8 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
-            "进入小奖励界面"
+            "进入小奖励界面",
+            "识别主界面（领取奖励）"
         ]
     },
     "进入小奖励界面": {
@@ -48,6 +69,86 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
+            "领取日常奖励"
+        ]
+    },
+    "领取日常奖励":{
+        "next": [
+            "领取日常奖励1"
+        ]
+    },
+    "领取日常奖励1": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [373,207,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取日常奖励2"
+        ]
+    },
+    "领取日常奖励2": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [380,294,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取日常奖励3"
+        ]
+    },
+    "领取日常奖励3": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [376,380,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取日常奖励4"
+        ]
+    },
+    "领取日常奖励4": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [379,470,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取日常奖励5"
+        ]
+    },
+    "领取日常奖励5": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [387,555,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
             "进入周常奖励界面"
         ]
     },
@@ -63,6 +164,86 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
+            "领取周常奖励"
+        ]
+    },
+    "领取周常奖励":{
+        "next": [
+            "领取周常奖励1"
+        ]
+    },
+    "领取周常奖励1": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [373,207,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取周常奖励2"
+        ]
+    },
+    "领取周常奖励2": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [380,294,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取周常奖励3"
+        ]
+    },
+    "领取周常奖励3": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [376,380,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取周常奖励4"
+        ]
+    },
+    "领取周常奖励4": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [379,470,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "领取周常奖励5"
+        ]
+    },
+    "领取周常奖励5": {
+        "recognition": {
+            "type": "DirectHit"
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [387,555,278,41]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
             "进入大奖励界面"
         ]
     },
@@ -72,6 +253,38 @@
             "param": {
                 "template": "领取每日奖励页面_178_44_116_26__128_0_216_120.png",
                 "roi": [128,0,216,120],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "领取箱子",
+            "退出奖励界面"
+        ]
+    },
+    "领取箱子":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_798_578_105_24__748_528_205_124.png",
+                "roi": [748,528,205,124],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 3000,
+        "next": [
+            "确认领取箱子",
+            "退出奖励界面"
+        ]
+    },
+    "确认领取箱子":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_565_458_148_29__515_408_248_129.png",
+                "roi": [515,408,248,129],
                 "threshold": 0.85
             }
         },
