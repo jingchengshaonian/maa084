@@ -2,7 +2,7 @@
     "刷经验本entry": {
         "next": [
             "进入战斗主界面（刷经验本）",
-            "检查战斗主界面（刷经验本）"
+            "识别战斗主界面（刷经验本）"
         ]
     },
     "进入战斗主界面（刷经验本）": {
@@ -22,10 +22,10 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
-            "进入经验本界面"
+            "识别战斗主界面（刷经验本）"
         ]
     },
-    "检查战斗主界面（刷经验本）": {
+    "识别战斗主界面（刷经验本）": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -42,7 +42,8 @@
         "action": "DoNothing",
         "post_delay": 1000,
         "next": [
-            "进入经验本界面"
+            "进入经验本界面",
+            "进入战斗主界面（刷经验本）"
         ]
     },
     "进入经验本界面": {
@@ -62,6 +63,301 @@
         },
         "action": "Click",
         "post_delay": 1000,
+        "next": [
+            "选择经验本"
+        ]
+    },
+    "选择经验本": {
+        "next": [
+            "选择最右侧经验本"
+        ]
+    },
+    "选择最右侧经验本": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "经验本主界面_1026_416_167_38__976_366_267_138.png",
+                "roi": [
+                    976,
+                    366,
+                    267,
+                    138
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "选择刷取次数"
+        ]
+    },
+    "选择刷取次数": {
+        "next": [
+            "仅一次",
+            "选择最大次数"
+        ]
+    },
+    "仅一次": {
+        "next": [
+            "进入编队界面"
+        ]
+    },
+    "选择最大次数": {
+        "next": [
+            "进入选择次数界面"
+        ]
+    },
+    "进入选择次数界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "经验本主界面_1197_246_20_16__1147_196_120_116.png",
+                "roi": [
+                    1147,
+                    196,
+                    120,
+                    116
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": [
+            "点击最大次数按钮"
+        ]
+    },
+    "点击最大次数按钮": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "经验本主界面_1197_277_25_16__1147_227_125_116.png",
+                "roi": [
+                    1147,
+                    227,
+                    125,
+                    116
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": [
+            "进入编队界面"
+        ]
+    },
+    "进入编队界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "经验本主界面_1046_467_67_25__996_417_167_125.png",
+                "roi": [
+                    996,
+                    417,
+                    167,
+                    125
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": [
+            "选择队伍"
+        ]
+    },
+    "选择队伍": {
+        "next": [
+            "默认队伍",
+            "选择第一支队伍"
+        ]
+    },
+    "默认队伍": {
+        "next": [
+            "罪人编号"
+        ]
+    },
+    "选择第一支队伍": {
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    91,
+                    303,
+                    79,
+                    22
+                ]
+            }
+        },
+        "next": [
+            "罪人编号"
+        ]
+    },
+    "罪人编号": {
+        "next": [
+            "默认编号",
+            "进行编号"
+        ]
+    },
+    "默认编号": {
+        "next": [
+            "进入战斗界面"
+        ]
+    },
+    "进行编号": {
+        "next": [
+            "清空罪人序号"
+        ]
+    },
+    "清空罪人序号": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "队伍排序页面_1075_468_145_21__1025_418_245_121.png",
+                "roi": [
+                    22,
+                    0,
+                    147,
+                    110
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "next": [
+            "具体编号"
+        ]
+    },
+    "具体编号": {
+        "action": "DoNothing",
+        "next": [
+            "进入战斗界面"
+        ]
+    },
+    "进入战斗界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "队伍排序页面_1079_574_137_29__1029_524_237_129.png",
+                "roi": [
+                    1029,
+                    524,
+                    237,
+                    129
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "next": [
+            "识别加载界面(刷经验本)"
+        ]
+    },
+    "识别编队界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "队伍排序页面_103_277_53_17__53_227_153_117.png",
+                "roi": [
+                    53,
+                    227,
+                    153,
+                    117
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "进入战斗界面",
+            "识别加载界面(刷经验本)"
+        ]
+    },
+    "识别加载界面(刷经验本)": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "加载界面_1088_667_145_40__1038_617_245_140.png",
+                "roi": [
+                    1038,
+                    617,
+                    245,
+                    140
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 2000,
+        "next": [
+            "识别编队界面",
+            "识别加载界面(刷经验本)",
+            "识别战斗界面"
+        ]
+    },
+    "识别战斗界面": {
+        "next": [
+            "识别选择技能界面",
+            "识别战斗结束界面",
+            "[JumpBack]识别战斗进行界面"
+        ]
+    },
+    "识别选择技能界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗页面_13_59_86_22__0_9_149_122.png",
+                "roi": [
+                    0,
+                    9,
+                    149,
+                    122
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 2000,
+        "next": [
+            "按P键"
+        ]
+    },
+    "按P键":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [80]}
+        },
+        "next":["按enter键"]
+    },
+    "按enter键":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [13]}
+        },
+        "next":["识别战斗界面"]
+    },
+    "识别战斗进行界面":{
+        "post_delay": 4000
+    },
+    "识别战斗结束界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗结算界面_1053_550_148_42__1003_500_248_142.png",
+                "roi": [
+                    1003,
+                    500,
+                    248,
+                    142
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
         "next": [
             "退出经验本界面"
         ]
