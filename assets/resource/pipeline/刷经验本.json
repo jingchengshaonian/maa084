@@ -379,24 +379,38 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
-            "确认回到战斗主界面（刷经验本）"
+            "回到主界面（刷经验本）"
         ]
     },
-    "确认回到战斗主界面（刷经验本）": {
+    "回到主界面（刷经验本）": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "战斗主界面_957_620_49_47__907_570_149_147.png",
+                "template": "战斗主界面_797_616_55_46__747_566_155_146.png",
                 "roi": [
-                    907,
-                    570,
-                    149,
-                    147
+                    747,566,155,146
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "确认回到主界面（刷经验本）"
+        ]
+    },
+    "确认回到主界面（刷经验本）":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,594,176,172
                 ],
                 "threshold": 0.85
             }
         },
         "action": "StopTask",
-        "timeout": 3000
+        "timeout": 1000
     }
 }

@@ -22,7 +22,7 @@
     ],
     "resource": [
         {
-            "name": "steam",
+            "name": "win32",
             "path": [
                 "./resource"
             ]
@@ -30,17 +30,17 @@
     ],
     "agent": {
         "child_exec": "d:/projects/maa/maa084/.venv/Scripts/python.exe",
-        "child_args": ["-u", "./../agent/main.py"]
+        "child_args": [
+            "-u",
+            "./../agent/main.py"
+        ]
     },
     "task": [
         {
             "name": "启动游戏",
             "entry": "启动游戏entry",
             "option": [
-                "启动模式",
-                "游戏路径",
-                "lalc脚本路径",
-                "lccmod路径"
+                "游戏路径"
             ]
         },
         {
@@ -56,7 +56,14 @@
         },
         {
             "name": "刷经验本",
-            "entry": "刷经验本entry"
+            "entry": "刷经验本entry",
+            "option": [
+                "经验本选择",
+                "刷取次数",
+                "编队选择",
+                "编队排序",
+                "战斗策略"
+            ]
         },
         {
             "name": "刷镜牢",
@@ -64,51 +71,6 @@
         }
     ],
     "option": {
-        "启动模式": {
-            "type": "select",
-            "cases": [
-                {
-                    "name": "直接启动",
-                    "label": "仅打开游戏",
-                    "description": "仅打开游戏",
-                    "pipeline_override": {
-                        "启动游戏entry": {
-                            "next": [
-                                "识别主界面",
-                                "识别开始界面"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "lalc模式",
-                    "label": "LALC 脚本模式（英文游戏）",
-                    "description": "打开游戏和 LALC 脚本，运行脚本（游戏保持英文）",
-                    "pipeline_override": {
-                        "启动游戏entry": {
-                            "next": [
-                                "识别主界面",
-                                "lalc模式启动"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "汉化模式",
-                    "label": "汉化软件模式（中文游戏）",
-                    "description": "打开汉化软件更新汉化，更新后点击打开游戏按钮启动游戏",
-                    "pipeline_override": {
-                        "启动游戏entry": {
-                            "next": [
-                                "识别主界面",
-                                "汉化模式启动"
-                            ]
-                        }
-                    }
-                }
-            ],
-            "default_case": "lalc模式"
-        },
         "游戏路径": {
             "type": "input",
             "inputs": [
@@ -122,48 +84,6 @@
             ],
             "pipeline_override": {
                 "启动游戏进程": {
-                    "action": {
-                        "param": {
-                            "exec": "{路径}"
-                        }
-                    }
-                }
-            }
-        },
-        "lalc脚本路径": {
-            "type": "input",
-            "inputs": [
-                {
-                    "name": "路径",
-                    "label": "LALC 脚本可执行文件路径",
-                    "description": "LALC 自动化脚本的 exe 文件完整路径",
-                    "default": "",
-                    "pipeline_type": "string"
-                }
-            ],
-            "pipeline_override": {
-                "启动lalc脚本": {
-                    "action": {
-                        "param": {
-                            "exec": "{路径}"
-                        }
-                    }
-                }
-            }
-        },
-        "lccmod路径": {
-            "type": "input",
-            "inputs": [
-                {
-                    "name": "路径",
-                    "label": "汉化软件可执行文件路径",
-                    "description": "LixAssistantLimbusCompany 汉化工具的 exe 文件完整路径",
-                    "default": "",
-                    "pipeline_type": "string"
-                }
-            ],
-            "pipeline_override": {
-                "启动汉化软件": {
                     "action": {
                         "param": {
                             "exec": "{路径}"
@@ -194,6 +114,173 @@
                     }
                 }
             }
+        },
+        "经验本选择": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "刷经验本1",
+                    "label": "刷经验本1",
+                    "description": "刷经验本1"
+                },
+                {
+                    "name": "刷经验本2",
+                    "label": "刷经验本2",
+                    "description": "刷经验本2"
+                },
+                {
+                    "name": "刷经验本3",
+                    "label": "刷经验本3",
+                    "description": "刷经验本3"
+                },
+                {
+                    "name": "刷经验本4",
+                    "label": "刷经验本4",
+                    "description": "刷经验本4"
+                },
+                {
+                    "name": "刷经验本5",
+                    "label": "刷经验本5",
+                    "description": "刷经验本5"
+                },
+                {
+                    "name": "刷经验本6",
+                    "label": "刷经验本6",
+                    "description": "刷经验本6"
+                },
+                {
+                    "name": "刷经验本7",
+                    "label": "刷经验本7",
+                    "description": "刷经验本7"
+                },
+                {
+                    "name": "刷经验本8",
+                    "label": "刷经验本8",
+                    "description": "刷经验本8"
+                },
+                {
+                    "name": "刷经验本9",
+                    "label": "刷经验本9",
+                    "description": "刷经验本9"
+                }
+            ]
+        },
+        "刷取次数": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "1次",
+                    "label": "1次",
+                    "description": "刷取经验本1次"
+                },
+                {
+                    "name": "2次",
+                    "label": "2次",
+                    "description": "刷取经验本2次"
+                },
+                {
+                    "name": "3次",
+                    "label": "3次",
+                    "description": "刷取经验本3次"
+                },
+                {
+                    "name": "4次",
+                    "label": "4次",
+                    "description": "刷取经验本4次"
+                },
+                {
+                    "name": "5次",
+                    "label": "5次",
+                    "description": "刷取经验本5次"
+                },
+                {
+                    "name": "6次",
+                    "label": "6次",
+                    "description": "刷取经验本6次"
+                },
+                {
+                    "name": "7次",
+                    "label": "7次",
+                    "description": "刷取经验本7次"
+                },
+                {
+                    "name": "8次",
+                    "label": "8次",
+                    "description": "刷取经验本8次"
+                },
+                {
+                    "name": "9次",
+                    "label": "9次",
+                    "description": "刷取经验本9次"
+                },
+                                {
+                    "name": "10次",
+                    "label": "10次",
+                    "description": "刷取经验本10次"
+                }
+            ]
+        },
+        "编队选择": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "编队1",
+                    "label": "编队1",
+                    "description": "选择编队1刷取经验本"
+                },
+                {
+                    "name": "编队2",
+                    "label": "编队2",
+                    "description": "选择编队2刷取经验本"
+                },
+                {
+                    "name": "编队3",
+                    "label": "编队3",
+                    "description": "选择编队3刷取经验本"
+                },
+                {
+                    "name": "编队4",
+                    "label": "编队4",
+                    "description": "选择编队4刷取经验本"
+                },
+                {
+                    "name": "编队5",
+                    "label": "编队5",
+                    "description": "选择编队5刷取经验本"
+                },
+                {
+                    "name": "编队6",
+                    "label": "编队6",
+                    "description": "选择编队6刷取经验本"
+                }
+            ]
+        },
+        "编队排序": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "排序",
+                    "label": "编队排序",
+                    "description": "选择刷取经验本的编队排序",
+                    "default": "1",
+                    "pipeline_type": "int"
+                }
+            ]
+        },
+        "战斗策略": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "纯P",
+                    "label": "自动化操作",
+                    "description": "自动化操作，纯P"
+                },
+                {
+                    "name": "全守备",
+                    "label": "所有人切守备",
+                    "description": "所有人切守备"
+                }
+            ]
         }
     }
 }
