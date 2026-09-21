@@ -1,0 +1,215 @@
+{
+    "back":{
+        "next": [
+            "[JumpBack]back_退出奖励界面",
+            "[JumpBack]back_退出换饼界面",
+            "[JumpBack]加载界面",
+            "[JumpBack]back_回到上个界面",
+            "[JumpBack]back_回到主界面",
+            "[JumpBack]back_退出镜牢主界面",
+            "识别主界面",
+            "[JumpBack]back_退出战斗界面",
+            "[JumpBack]back_退出镜牢节点界面"
+        ]
+    },
+    "back_退出奖励界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取每日奖励页面_69_37_61_34__19_0_161_121.png",
+                "roi": [19,0,161,121],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "确认回到主界面（领取奖励）"
+        ]
+    },
+    "back_退出换饼界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "换饼页面_413_562_217_40__363_512_317_140.png",
+                "roi": [
+                    363,
+                    512,
+                    317,
+                    140
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "加载界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "加载界面_1088_667_145_40__1038_617_245_140.png",
+                "roi": [1038, 617, 245, 140],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 2000
+    },
+    "back_回到上个界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "经验本主界面_72_35_47_25__22_0_147_110.png",
+                "roi": [
+                    22,
+                    0,
+                    147,
+                    110
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "back_回到主界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗主界面_797_616_55_46__747_566_155_146.png",
+                "roi": [
+                    747,566,155,146
+                ],
+                "threshold": 0.9
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "back_退出镜牢主界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢界面_69_32_53_30__19_0_153_112.png",
+                "roi": [
+                    19,
+                    0,
+                    153,
+                    112
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000
+    },
+    "识别主界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [895, 594, 176, 172],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing"
+    },
+    "back_退出战斗界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗页面__1219_25_33_32__1169_0_111_107.png",
+                "roi": [
+                    1169,0,111,107
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "退出战斗界面"
+        ]
+    },
+    "退出战斗界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗页面__582_386_122_28__532_336_222_128.png",
+                "roi": [
+                    532,336,222,128
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "退出失败结算界面",
+            "back_退出镜牢节点界面"
+        ]
+    },
+    "退出失败结算界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗结算页面__1053_552_147_37__1003_502_247_137.png",
+                "roi": [
+                    1003,502,247,137
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000
+    },
+    "back_退出镜牢节点界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢进节点页面__1216_30_32_31__1166_0_114_111.png",
+                "roi": [
+                    1166,0,114,111
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "next":[
+            "回到镜牢主界面"
+        ]
+    },
+    "回到镜牢主界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢进节点页面__703_386_72_103__653_336_172_203.png",
+                "roi": [
+                    653,336,172,203
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "next":[
+            "确认回到镜牢主界面"
+        ]
+    },
+    "确认回到镜牢主界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢进节点页面__699_475_124_27__649_425_224_127.png",
+                "roi": [
+                    649,425,224,127
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000
+    }
+}

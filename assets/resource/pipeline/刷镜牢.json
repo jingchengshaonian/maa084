@@ -2,7 +2,8 @@
     "刷镜牢entry": {
         "next": [
             "进入战斗主界面（刷镜牢）",
-            "检查战斗主界面（刷镜牢）"
+            "检查战斗主界面（刷镜牢）",
+            "[JumpBack]back"
         ]
     },
     "进入战斗主界面（刷镜牢）": {
@@ -85,13 +86,16 @@
             "确定进入镜牢"
         ]
     },
-    "有未结算镜牢":{
+    "有未结算镜牢": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "镜牢界面_563_432_158_24__513_382_258_124.png",
                 "roi": [
-                    513,382,258,124
+                    513,
+                    382,
+                    258,
+                    124
                 ],
                 "threshold": 0.85
             }
@@ -102,13 +106,16 @@
             "退出上一次镜牢"
         ]
     },
-    "退出上一次镜牢":{
+    "退出上一次镜牢": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "镜牢界面_703_478_124_28__653_428_224_128.png",
                 "roi": [
-                    653,428,224,128
+                    653,
+                    428,
+                    224,
+                    128
                 ],
                 "threshold": 0.85
             }
@@ -119,13 +126,37 @@
             "放弃上一次镜牢奖励"
         ]
     },
-    "放弃上一次镜牢奖励":{
+    "放弃上一次镜牢奖励": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "镜牢界面_299_531_188_28__249_481_288_128.png",
                 "roi": [
-                    249,481,288,128
+                    249,
+                    481,
+                    288,
+                    128
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "确认放弃上一次镜牢奖励",
+            "点击镜牢按钮"
+        ]
+    },
+    "确认放弃上一次镜牢奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢界面_709_482_114_27__659_432_214_127.png",
+                "roi": [
+                    249,
+                    481,
+                    288,
+                    128
                 ],
                 "threshold": 0.85
             }
@@ -259,7 +290,7 @@
     },
     "选择饰品": {
         "next": [
-            //"不选择饰品",
+            "不选择饰品",
             "选择烧伤饰品"
         ]
     },
@@ -282,13 +313,16 @@
             "确认无饰品提示"
         ]
     },
-    "确认无饰品提示":{
+    "确认无饰品提示": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "初始饰品选择_708_482_118_25__658_432_218_125.png",
                 "roi": [
-                    658,432,218,125
+                    658,
+                    432,
+                    218,
+                    125
                 ],
                 "threshold": 0.85
             }
@@ -317,49 +351,67 @@
             "初始饰品选1"
         ]
     },
-    "初始饰品选1":{
+    "初始饰品选1": {
         "recognition": "DirectHit",
         "action": {
             "type": "Click",
-            "param":{
-                "target": [861,193,216,142]
+            "param": {
+                "target": [
+                    861,
+                    193,
+                    216,
+                    142
+                ]
             }
         },
         "next": [
             "确认选择饰品"
         ]
     },
-    "初始饰品选2":{
+    "初始饰品选2": {
         "recognition": "DirectHit",
         "action": {
             "type": "Click",
-            "param":{
-                "target": [859,301,216,142]
+            "param": {
+                "target": [
+                    859,
+                    301,
+                    216,
+                    142
+                ]
             }
         },
         "next": [
             "确认选择饰品"
         ]
     },
-    "初始饰品选3":{
+    "初始饰品选3": {
         "recognition": "DirectHit",
         "action": {
             "type": "Click",
-            "param":{
-                "target": [862,409,216,142]
+            "param": {
+                "target": [
+                    862,
+                    409,
+                    216,
+                    142
+                ]
             }
         },
         "next": [
             "确认选择饰品"
         ]
     },
-    "确认选择饰品":{
+    "确认选择饰品": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "初始饰品选择_1010_570_89_35__960_520_189_135.png",
                 "roi": [
-                    960,520,189,135
+                    960,
+                    520,
+                    189,
+                    135
                 ],
                 "threshold": 0.85
             }
@@ -367,32 +419,99 @@
         "action": "Click",
         "post_delay": 2000,
         "next": [
-            "确认饰品"
+            "确认饰品",
+            "确认选择饰品"
         ]
     },
-    "确认饰品":{
+    "确认饰品": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": "初始饰品选择_575_518_140_29__525_468_240_129.png",
                 "roi": [
-                    525,468,240,129
+                    525,
+                    468,
+                    240,
+                    129
                 ],
                 "threshold": 0.85
             }
         },
         "action": "Click",
-        "post_delay": 2000,
+        "post_delay": 5000,
         "next": [
             "选择卡包"
         ]
     },
     "选择卡包": {
         "next": [
-            "选择最左侧卡包"
+            "选择卡包1"
         ]
     },
-    "选择最左侧卡包":{
+    "选择卡包1": {
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    360,
+                    226
+                ],
+                "end": [
+                    360,
+                    526
+                ],
+                "duration": 500
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "进入节点选择界面"
+        ]
+    },
+    "选择卡包2": {
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    580,
+                    226
+                ],
+                "end": [
+                    580,
+                    526
+                ],
+                "duration": 500
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "进入节点选择界面"
+        ]
+    },
+    "选择卡包3": {
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    780,
+                    236
+                ],
+                "end": [
+                    780,
+                    536
+                ],
+                "duration": 500
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "进入节点选择界面"
+        ]
+    },
+    "进入节点选择界面": {
         "action": "StopTask"
     },
     "退出镜牢主界面": {
@@ -409,7 +528,7 @@
                 "threshold": 0.85
             }
         },
-        "action": "StopTask",
+        "action": "Click",
         "post_delay": 2000,
         "next": [
             "确认回到战斗主界面（刷镜牢）"

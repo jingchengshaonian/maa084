@@ -1,26 +1,62 @@
 {
-    "战斗entry": {
+    "识别战斗界面": {
         "next": [
-            "选择技能"
+            "[JumpBack]识别选择技能界面",
+            "识别战斗结束界面",
+            "[JumpBack]识别战斗进行界面"
         ]
     },
-    "选择技能":{
-        "next":[
-            "[JumpBack]回合结束",
-            "战斗结束",
-            "[JumpBack]进入事件选择"
+    "识别选择技能界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗页面_13_59_86_22__0_9_149_122.png",
+                "roi": [
+                    0,
+                    9,
+                    149,
+                    122
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 500,
+        "next": [
+            "按P键"
         ]
     },
-    "回合结束":{
+    "按P键":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [80]}
+        },
+        "next":["按enter键"]
     },
-    "战斗结束":{
-        "next":[
-            "返回界面"
-        ]
+    "按enter键":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [13]}
+        }
     },
-    "进入事件选择":{
+    "识别战斗进行界面":{
+        "post_delay": 4000
     },
-    "返回界面":{
-        "action": "StopTask"
+    "识别战斗结束界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗结算界面_1053_550_148_42__1003_500_248_142.png",
+                "roi": [
+                    1003,
+                    500,
+                    248,
+                    142
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click"
     }
 }

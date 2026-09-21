@@ -2,7 +2,8 @@
     "刷经验本entry": {
         "next": [
             "进入战斗主界面（刷经验本）",
-            "识别战斗主界面（刷经验本）"
+            "识别战斗主界面（刷经验本）",
+            "[JumpBack]back"
         ]
     },
     "进入战斗主界面（刷经验本）": {
@@ -295,71 +296,8 @@
         "next": [
             "识别编队界面",
             "识别加载界面(刷经验本)",
-            "识别战斗界面"
-        ]
-    },
-    "识别战斗界面": {
-        "next": [
-            "识别选择技能界面",
-            "识别战斗结束界面",
-            "[JumpBack]识别战斗进行界面"
-        ]
-    },
-    "识别选择技能界面": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "战斗页面_13_59_86_22__0_9_149_122.png",
-                "roi": [
-                    0,
-                    9,
-                    149,
-                    122
-                ],
-                "threshold": 0.85,
-                "green_mask": true
-            }
-        },
-        "action": "DoNothing",
-        "post_delay": 2000,
-        "next": [
-            "按P键"
-        ]
-    },
-    "按P键":{
-        "action": {
-            "type": "ClickKey",
-            "param":{"key": [80]}
-        },
-        "next":["按enter键"]
-    },
-    "按enter键":{
-        "action": {
-            "type": "ClickKey",
-            "param":{"key": [13]}
-        },
-        "next":["识别战斗界面"]
-    },
-    "识别战斗进行界面":{
-        "post_delay": 4000
-    },
-    "识别战斗结束界面": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "战斗结算界面_1053_550_148_42__1003_500_248_142.png",
-                "roi": [
-                    1003,
-                    500,
-                    248,
-                    142
-                ],
-                "threshold": 0.85
-            }
-        },
-        "action": "Click",
-        "next": [
-            "退出经验本界面"
+            "退出经验本界面",
+            "[JumpBack]识别战斗界面"
         ]
     },
     "退出经验本界面": {
