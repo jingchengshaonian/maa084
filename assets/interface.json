@@ -68,10 +68,6 @@
         {
             "name": "刷镜牢",
             "entry": "刷镜牢entry"
-        },
-                {
-            "name": "test",
-            "entry": "testentry"
         }
     ],
     "option": {
