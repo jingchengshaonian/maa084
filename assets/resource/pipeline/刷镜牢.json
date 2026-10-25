@@ -437,7 +437,7 @@
                 "threshold": 0.85
             }
         },
-        "action": "Click",
+        "action": "StopTask",
         "post_delay": 5000,
         "next": [
             "选择卡包"
@@ -466,7 +466,7 @@
         },
         "post_delay": 2000,
         "next": [
-            "进入节点选择界面"
+            "节点选择"
         ]
     },
     "选择卡包2": {
@@ -487,7 +487,7 @@
         },
         "post_delay": 2000,
         "next": [
-            "进入节点选择界面"
+            "节点选择"
         ]
     },
     "选择卡包3": {
@@ -508,22 +508,111 @@
         },
         "post_delay": 2000,
         "next": [
-            "进入节点选择界面"
+            "节点选择"
         ]
     },
-    "进入节点选择界面": {
-        "action": "StopTask"
-    },
-    "退出镜牢主界面": {
+    "节点选择": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "镜牢界面_69_32_53_30__19_0_153_112.png",
+                "template": "选择节点页面__1059_28_37_37__1009_0_137_115.png",
                 "roi": [
-                    19,
+                    1009,
                     0,
-                    153,
-                    112
+                    137,
+                    115
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "next": [
+            "默认路线",
+            "最短路线"
+        ]
+    },
+    "默认路线": {
+        "next": [
+            "选择上层节点",
+            "选择中层节点",
+            "选择下层节点"
+        ]
+    },
+    "最短路线": {
+        "next": [
+            "缩小界面"
+        ]
+    },
+    "缩小界面":{
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Scroll",
+            "param": {
+                "target": [640, 360],
+                "dy": -120
+            }
+        },
+        "repeat": 8,
+        "repeat_delay": 50,
+        "post_delay": 200,
+        "next":[
+            "移动界面"
+        ]
+    },
+    "移动界面":{
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [230, 193],
+                "end": [861, 494],
+                "duration": 500
+            }
+        },
+        "next":[
+            "识别该层节点"
+        ]
+    },
+    "识别该层节点": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "GetMapNode"
+            }
+        },
+        "action": "StopTask"
+    },
+    "选择上层节点":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [87]}
+        },
+        "post_delay": 500,
+        "next":["点击进入按钮"]
+    },
+    "选择中层节点":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [68]}
+        },
+        "post_delay": 500,
+        "next":["点击进入按钮"]
+    },
+    "选择下层节点":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [83]}
+        },
+        "post_delay": 500,
+        "next":["点击进入按钮"]
+    },
+    "点击进入按钮":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "选择节点页面__1077_520_118_45__1027_470_218_145.png",
+                "roi": [
+                    1027,470,218,145
                 ],
                 "threshold": 0.85
             }
@@ -531,24 +620,538 @@
         "action": "Click",
         "post_delay": 2000,
         "next": [
-            "确认回到战斗主界面（刷镜牢）"
+            "确认当前页面"
         ]
     },
-    "确认回到战斗主界面（刷镜牢）": {
+    "确认当前页面":{
+        "next":[
+            "识别战斗页面",
+            "识别事件页面",
+            "识别商店页面"
+        ]
+    },
+    "识别战斗页面":{
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "战斗主界面_957_620_49_47__907_570_149_147.png",
+                "template": "队伍排序页面_1079_574_137_29__1029_524_237_129.png",
                 "roi": [
-                    907,
-                    570,
-                    149,
-                    147
+                    1029,
+                    524,
+                    237,
+                    129
                 ],
                 "threshold": 0.85
             }
         },
-        "action": "StopTask",
-        "timeout": 3000
+        "action": "Click",
+        "post_delay": 2000,
+        "next":[
+            "识别加载界面(刷镜牢)"
+        ]
+    },
+    "识别加载界面(刷镜牢)": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "加载界面_1088_667_145_40__1038_617_245_140.png",
+                "roi": [
+                    1038,
+                    617,
+                    245,
+                    140
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 2000,
+        "next": [
+            "[JumpBack]识别加载界面",
+            "[JumpBack]识别选择技能界面",
+            "[JumpBack]识别战斗进行界面",
+            "[JumpBack]领取资源奖励",
+            "[JumpBack]不领取战斗奖励",
+            "[JumpBack]领取事件战斗奖励",
+            "节点选择",
+            "选择卡包",
+            "镜牢结算界面"
+        ]
+    },
+    "领取资源奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗奖励__285_115_499_43__235_65_599_143.png",
+                "roi": [
+                    235,
+                    65,
+                    599,143
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay":3000,
+        "next":[
+            "不领奖",
+            "领奖"
+        ]
+    },
+    "不领奖": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗奖励__462_518_102_23__412_468_202_123.png",
+                "roi": [
+                    412,
+                    468,
+                    202,
+                    123
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next":[
+            "确认不领奖"
+        ]
+    },
+    "确认不领奖": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗奖励__685_454_121_25__635_404_221_125.png",
+                "roi": [
+                    635,
+                    404,
+                    221,
+                    125
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000
+    },
+    "领奖": {
+        "action":"DoNothing",
+        "post_delay":3000,
+        "next":[
+            "确认领奖"
+        ]
+    },
+    "确认领奖": {
+        "action":"DoNothing",
+        "post_delay":3000
+    },
+    "领取饰品奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取卡包奖励__70_45_37_33__20_0_137_128.png",
+                "roi": [
+                    20,0,137,128
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay":3000,
+        "next":[
+            "不领",
+            "领"
+        ]
+    },
+    "不领": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗奖励__462_518_102_23__412_468_202_123.png",
+                "roi": [
+                    412,
+                    468,
+                    202,
+                    123
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay":3000
+    },
+    "领": {
+        "action":"DoNothing",
+        "post_delay":3000,
+        "next":[
+            "确认领"
+        ]
+    },
+    "确认领": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取卡包奖励__583_518_124_29__533_468_224_129.png",
+                "roi": [
+                    533,468,224,129
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000
+    },
+    "不领取战斗奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗奖励__886_562_125_34__836_512_225_134.png",
+                "roi": [
+                    836,512,225,134
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next":[
+            "确定不领奖"
+        ]
+    },
+    "确定不领奖": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗奖励__709_481_112_25__659_431_212_125.png",
+                "roi": [
+                    659,431,212,125
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000
+    },
+    "领取事件战斗奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取战斗事件奖励__575_518_135_28__525_468_235_128.png",
+                "roi": [
+                    525,468,235,128
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000
+    },
+    "识别事件页面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢事件页面__1080_620_101_53__1030_570_201_150.png",
+                "roi": [1030,570,201,150],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "next":[
+            "识别事件页面",
+            "[JumpBack]推进事件1",
+            "[JumpBack]选择罪人",
+            "[JumpBack]推进事件4",
+            "[JumpBack]选择事件选项",
+            "[JumpBack]领取事件奖励",
+            "节点选择",
+            "进入事件战斗",
+            "[JumpBack]推进事件3"
+        ]
+    },
+    "选择事件选项":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢事件选择__678_106_168_49__628_56_268_149.png",
+                "roi": [628,56,268,149
+                ],
+                "threshold": 0.85
+            }
+        },
+        "next":[
+            "选择选项1",
+            "选择选项2"
+        ]
+    },
+    "选择选项1":{
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [718,198,311,57]
+            }
+        },
+        "post_delay": 2000
+    },
+    "选择选项2":{
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [718,328,311,57]
+            }
+        },
+        "post_delay": 2000
+    },
+    "推进事件1":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢事件页面__1061_627_143_41__1011_577_243_141.png",
+                "roi": [1011,577,243,141],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click"
+    },
+    "选择罪人":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "罪人选择界面__728_99_430_161__678_49_530_261.png",
+                "roi": [678,49,530,261
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "next":[
+            "选李箱"
+        ]
+    },
+    "选李箱":{
+        "recognition": "DirectHit",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [60,640,37,35]
+            }
+        },
+        "post_delay": 2000,
+        "next":["推进事件2"]
+    },
+    "推进事件2":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢事件界面__1054_626_158_43__1004_576_258_143.png",
+                "roi": [1004,576,258,143],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay": 7000
+    },
+    "推进事件3":{
+        "action":{
+            "type": "Click",
+            "param": {
+                "target": [600,487,31,29]
+            }
+        }
+    },
+    "推进事件4":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢事件界面__1052_626_161_44__1002_576_261_144.png",
+                "roi": [1002,576,261,144],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 2000,
+        "action":"Click"
+    },
+    "领取事件奖励":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "领取事件奖励__579_517_133_33__529_467_233_133.png",
+                "roi": [529,467,233,133
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 2000,
+        "action":"Click"
+    },
+    "进入事件战斗":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢事件界面__1051_629_161_38__1001_579_261_138.png",
+                "roi": [1001,579,261,138],
+                "threshold": 0.85
+            }
+        },
+        "next":[
+            "识别战斗页面"
+        ]
+    },
+    "识别商店页面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢商店页面__53_35_40_37__3_0_140_122.png",
+                "roi": [3,0,140,122],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 2000,
+        "action":"DoNothing",
+        "next":[
+            "退出商店页面"
+        ]
+    },
+    "退出商店页面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢商店页面__1070_625_125_43__1020_575_225_143.png",
+                "roi": [1020,575,225,143
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 2000,
+        "action":"Click",
+        "next":[
+            "确认退出商店页面"
+        ]
+    },
+    "确认退出商店页面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢商店页面__706_481_116_27__656_431_216_127.png",
+                "roi": [656,431,216,127
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 2000,
+        "action":"Click",
+        "next":[
+            "节点选择"
+        ]
+    },
+    "镜牢结算界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢结算界面__1054_551_147_39__1004_501_247_139.png",
+                "roi": [
+                    1004,
+                    501,
+                    247,
+                    139
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next": [
+            "选择卡包1"
+        ]
+    },
+    "镜牢结算奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢结算奖励__1055_574_144_50__1005_524_244_150.png",
+                "roi": [
+                    1005,
+                    524,244,150
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next": [
+            "选择卡包1"
+        ]
+    },
+    "镜牢结算奖励领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢结算奖励__793_527_106_33__743_477_206_133.png",
+                "roi": [743,
+                    477,
+                    206,
+                    133
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next": [
+            "选择卡包1"
+        ]
+    },
+    "确认领取镜牢结算奖励": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢结算奖励__707_482_116_23__657_432_216_123.png",
+                "roi": [657,
+                    432,
+                    216,
+                    123
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next": [
+            "领取狂气"
+        ]
+    },
+    "领取狂气": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢结算界面__575_457_129_29__525_407_229_129.png",
+                "roi": [525,
+                    407,
+                    229,
+                    129
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000,
+        "next": [
+            "确认升级"
+        ]
+    },
+    "确认升级": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢结算界面__580_457_120_29__530_407_220_129.png",
+                "roi": [530,
+                    407,
+                    220,
+                    129
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action":"Click",
+        "post_delay":3000
     }
 }

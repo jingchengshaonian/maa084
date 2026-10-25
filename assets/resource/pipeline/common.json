@@ -1,53 +1,65 @@
 {
-    "语言错误": {
+    "识别加载界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "加载界面_1088_667_145_40__1038_617_245_140.png",
+                "roi": [
+                    1038,
+                    617,
+                    245,
+                    140
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 2000
+    },
+    "识别选择技能界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗页面_13_59_86_22__0_9_149_122.png",
+                "roi": [
+                    0,
+                    9,
+                    149,
+                    122
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 500,
         "next": [
-            "进入奖励界面"
+            "按P键"
         ]
     },
-    "界面分辨率错误": {
-        "next": [
-            "进入奖励界面"
-        ]
+    "按P键":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [80]}
+        },
+        "next":["按enter键"]
     },
-    "长时间无识别结果": {
-        "next": [
-            "进入奖励界面"
-        ]
+    "按enter键":{
+        "action": {
+            "type": "ClickKey",
+            "param":{"key": [13]}
+        }
     },
-    "无法判断当前界面": {
-        "next": [
-            "进入奖励界面"
-        ]
-    },
-    "没有进入预期界面": {
-        "next": [
-            "回到主界面（error）"
-        ]
-    },
-    "回到主界面（error）": {
-        "next": [
-            "识别当前XX界面"
-        ]
-    },
-    "识别当前XX界面": {
-        "next": [
-            "从XX界面返回主界面"
-        ]
-    },
-    "从XX界面返回主界面": {
-        "next": [
-            "识别当前XX界面",
-            "回到主界面（error）"
-        ]
-    },
-    "游戏未运行": {
-        "next": [
-            "进入奖励界面"
-        ]
-    },
-    "镜牢未结算": {
-        "next": [
-            "进入奖励界面"
-        ]
+    "识别战斗进行界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗页面__1152_15_111_55__1102_0_178_120.png",
+                "roi": [
+                    1102,0,178,120
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 4000
     }
 }

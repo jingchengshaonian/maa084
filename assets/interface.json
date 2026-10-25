@@ -15,8 +15,8 @@
                 "class_regex": ".*",
                 "window_regex": "LimbusCompany",
                 "screencap": "FramePool",
-                "mouse": "Seize",
-                "keyboard": "SendMessage"
+                "mouse": "SendMessageWithWindowPos",
+                "keyboard": "SendMessageWithWindowPos"
             }
         }
     ],
@@ -68,6 +68,10 @@
         {
             "name": "刷镜牢",
             "entry": "刷镜牢entry"
+        },
+                {
+            "name": "test",
+            "entry": "testentry"
         }
     ],
     "option": {
