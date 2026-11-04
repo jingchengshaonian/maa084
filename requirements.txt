@@ -1,2 +1,2 @@
-，# 与 CI 下载的 MaaFramework 版本保持兼容，升级 MaaFramework 时同步修改
+# 与 CI 下载的 MaaFramework 版本保持兼容，升级 MaaFramework 时同步修改
 maafw==5.15.0
