@@ -17,7 +17,7 @@ jobs:
     steps:
       - id: check
         run: |
-          if [[ "${{ github.repository }}" == "MaaXYZ/MaaPracticeBoilerplate" ]]; then
+          if [[ "${{ github.repository }}" == "jingchengshaonian/maa084" ]]; then
             echo "Repository is MaaXYZ/MaaPracticeBoilerplate, proceeding with sync"
             echo "should_run=true" >> $GITHUB_OUTPUT
           else
