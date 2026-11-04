@@ -1,0 +1,270 @@
+{
+    "刷纽本entry": {
+        "next": [
+            "进入战斗主界面（刷纽本）",
+            "识别战斗主界面（刷纽本）",
+            "[JumpBack]back"
+        ]
+    },
+    "进入战斗主界面（刷纽本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,
+                    594,
+                    176,
+                    172
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "识别战斗主界面（刷纽本）"
+        ]
+    },
+    "识别战斗主界面（刷纽本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗主界面_957_620_49_47__907_570_149_147.png",
+                "roi": [
+                    907,
+                    570,
+                    149,
+                    147
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 1000,
+        "next": [
+            "进入纽本界面1",
+            "进入战斗主界面（刷纽本）"
+        ]
+    },
+    "进入纽本界面1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗主界面_389_176_119_25__339_126_219_125.png",
+                "roi": [
+                    339,
+                    126,
+                    219,
+                    125
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "进入纽本界面2"
+        ]
+    },
+    "进入纽本界面2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "纽本主界面__82_309_127_47__32_259_227_147.png",
+                "roi": [
+                    32,
+                    259,
+                    227,
+                    147
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "选择纽本"
+        ]
+    },
+    "选择纽本": {
+        "next": [
+            "选择开放纽本"
+        ]
+    },
+    "选择开放纽本": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "纽本主界面__336_470_72_21__286_420_172_121.png",
+                "roi": [
+                    286,
+                    420,
+                    172,
+                    121
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": [
+            "进入选择异想体界面"
+        ]
+    },
+    "进入选择异想体界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "选择异想体__413_445_444_75__363_395_544_175.png",
+                "roi": [
+                    363,
+                    395,
+                    544,
+                    175
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "Click",
+        "next": [
+            "进入编队界面（刷纽本）"
+        ]
+    },
+    "进入编队界面（刷纽本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "编队界面__103_276_53_19__53_226_153_119.png",
+                "roi": [
+                    53,
+                    226,
+                    153,
+                    119
+                ],
+                "threshold": 0.85,
+                "green_mask": true
+            }
+        },
+        "action": "DoNothing",
+        "next": [
+            "选择队伍（刷纽本）"
+        ]
+    },
+    "选择队伍（刷纽本）": {
+        "next": [
+            "默认队伍（刷纽本）"
+        ]
+    },
+    "默认队伍（刷纽本）": {
+        "next": [
+            "罪人编号（刷纽本）"
+        ]
+    },
+    "罪人编号（刷纽本）": {
+        "next": [
+            "默认编号（刷纽本）"
+        ]
+    },
+    "默认编号（刷纽本）": {
+        "next": [
+            "进入战斗界面（刷纽本）"
+        ]
+    },
+    "进入战斗界面（刷纽本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "纽本主界面__1078_573_136_31__1028_523_236_131.png",
+                "roi": [
+                    1029,
+                    524,
+                    237,
+                    129
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "进入战斗界面（刷纽本）",
+            "识别战斗结束界面（刷纽本）",
+            "[JumpBack]识别加载界面",
+            "[JumpBack]识别选择技能界面",
+            "[JumpBack]识别战斗进行界面",
+            "[JumpBack]识别过场动画界面"
+        ]
+    },
+    "识别战斗结束界面（刷纽本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "纽本结束界面__1055_551_144_40__1005_501_244_140.png",
+                "roi": [
+                    1005,
+                    501,
+                    244,
+                    140
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay":3000,
+        "action": "Click",
+        "next": [
+            "退出纽本界面"
+        ]
+    },
+    "退出纽本界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "纽本主界面__74_35_44_21__24_0_144_106.png",
+                "roi": [
+                    24,0,144,106
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "回到主界面（刷纽本）"
+        ]
+    },
+    "回到主界面（刷纽本）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗主界面_797_616_55_46__747_566_155_146.png",
+                "roi": [
+                    747,566,155,146
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "确认回到主界面（刷纽本）"
+        ]
+    },
+    "确认回到主界面（刷纽本）":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "主界面_945_651_76_72__895_594_176_172.png",
+                "roi": [
+                    895,594,176,172
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "StopTask",
+        "timeout": 1000
+    }
+}

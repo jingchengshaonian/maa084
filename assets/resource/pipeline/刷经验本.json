@@ -252,12 +252,15 @@
                 "threshold": 0.85
             }
         },
+        "post_delay": 5000,
         "action": "Click",
         "next": [
             "进入战斗界面",
             "识别战斗结束界面",
+            "[JumpBack]识别加载界面",
             "[JumpBack]识别选择技能界面",
-            "[JumpBack]识别战斗进行界面"
+            "[JumpBack]识别战斗进行界面",
+            "[JumpBack]识别过场动画界面"
         ]
     },
     "识别战斗结束界面": {

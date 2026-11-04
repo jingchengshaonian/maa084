@@ -9,7 +9,9 @@
             "[JumpBack]back_退出镜牢主界面",
             "识别主界面",
             "[JumpBack]back_退出战斗界面",
-            "[JumpBack]back_退出镜牢节点界面"
+            "[JumpBack]back_退出镜牢节点界面",
+            "[JumpBack]back_退出战斗结束界面",
+            "[JumpBack]back_退出镜牢卡包界面"
         ]
     },
     "back_退出奖励界面": {
@@ -195,6 +197,7 @@
         "action": "Click",
         "post_delay": 2000,
         "next":[
+            "回到镜牢主界面",
             "确认回到镜牢主界面"
         ]
     },
@@ -211,5 +214,39 @@
         },
         "action": "Click",
         "post_delay": 2000
+    },
+    "back_退出战斗结束界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "战斗结算界面_1053_550_148_42__1003_500_248_142.png",
+                "roi": [
+                    1003,
+                    500,
+                    248,
+                    142
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay":3000,
+        "action": "Click"
+    },
+    "back_退出镜牢卡包界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "镜牢卡包界面__1190_28_39_37__1140_0_139_115.png",
+                "roi": [
+                    1140,0,139,115
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay":3000,
+        "action": "Click",
+        "next": [
+            "回到镜牢主界面"
+        ]
     }
 }

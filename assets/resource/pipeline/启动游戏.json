@@ -15,33 +15,22 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "开始界面_351_647_113_15__301_597_213_115.png",
-                "roi": [301,597,213,115],
+                "template": "biaozhi__1006_661_45_25__956_611_145_109.png",
+                "roi": [956, 611, 145, 109],
                 "threshold": 0.85
             }
         },
-        "action": "DoNothing",
-        "next": [
-            "进入主界面",
-            "识别加载界面（启动游戏）"
-        ]
-    },
-    "进入主界面": {
-        "recognition": {
-            "type": "TemplateMatch",
+        "action":{
+            "type": "Click",
             "param": {
-                "template": "开始界面_561_543_156_26__511_493_256_126.png",
-                "roi": [511, 493, 256, 126],
-                "threshold": 0.85,
-                "green_mask": true
+                "target":[561,543, 156, 26]
             }
         },
-        "action": "Click",
         "post_delay": 2000,
         "next": [
-            "识别开始界面",
             "识别加载界面（启动游戏）",
-            "识别主界面（启动游戏）"
+            "识别更新界面",
+            "识别开始界面"
         ]
     },
     "识别加载界面（启动游戏）": {
@@ -71,5 +60,36 @@
         },
         "action": "StopTask",
         "timeout": 30000
+    },
+    "识别更新界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "更新界面__689_440_122_34__639_390_222_134.png",
+                "roi": [639, 390, 222, 134],
+                "threshold": 0.85
+            }
+        },
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "识别更新界面",
+            "识别加载界面（更新游戏）"
+        ]
+    },
+    "识别加载界面（更新游戏）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "更新界面__1073_598_161_32__1023_548_257_132.png",
+                "roi": [1023, 548, 257, 132],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
+        "post_delay": 30000,
+        "next": [
+            "识别主界面（启动游戏）"
+        ]
     }
 }

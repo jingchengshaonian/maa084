@@ -61,5 +61,18 @@
             }
         },
         "post_delay": 4000
+    },
+    "识别过场动画界面":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "识别过场动画__1042_50_188_46__992_0_288_146.png",
+                "roi": [
+                    992,0,288,146
+                ],
+                "threshold": 0.85
+            }
+        },
+        "post_delay": 4000
     }
 }

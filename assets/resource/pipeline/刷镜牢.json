@@ -23,7 +23,7 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
-            "进入镜牢界面"
+            "检查战斗主界面（刷镜牢）"
         ]
     },
     "检查战斗主界面（刷镜牢）": {
@@ -43,7 +43,8 @@
         "action": "DoNothing",
         "post_delay": 1000,
         "next": [
-            "进入镜牢界面"
+            "进入镜牢界面",
+            "进入战斗主界面（刷镜牢）"
         ]
     },
     "进入镜牢界面": {
@@ -83,7 +84,8 @@
         "post_delay": 2000,
         "next": [
             "有未结算镜牢",
-            "确定进入镜牢"
+            "确定进入镜牢",
+            "放弃上一次镜牢奖励"
         ]
     },
     "有未结算镜牢": {
@@ -327,6 +329,7 @@
                 "threshold": 0.85
             }
         },
+        "post_delay": 5000,
         "action": "Click",
         "next": [
             "选择卡包"
@@ -437,18 +440,32 @@
                 "threshold": 0.85
             }
         },
-        "action": "StopTask",
+        "action": "Click",
         "post_delay": 5000,
         "next": [
             "选择卡包"
         ]
     },
     "选择卡包": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "卡包选择界面__130_33_116_28__80_0_216_111.png",
+                "roi": [
+                    80,
+                    0,
+                    216,
+                    111
+                ],
+                "threshold": 0.85
+            }
+        },
+        "action": "DoNothing",
         "next": [
-            "选择卡包1"
+            "选择卡包31"
         ]
     },
-    "选择卡包1": {
+    "选择卡包31": {
         "recognition": "DirectHit",
         "action": {
             "type": "Swipe",
@@ -464,12 +481,13 @@
                 "duration": 500
             }
         },
-        "post_delay": 2000,
+        "post_delay": 8000,
         "next": [
-            "节点选择"
+            "节点选择",
+            "选择卡包"
         ]
     },
-    "选择卡包2": {
+    "选择卡包32": {
         "recognition": "DirectHit",
         "action": {
             "type": "Swipe",
@@ -485,12 +503,12 @@
                 "duration": 500
             }
         },
-        "post_delay": 2000,
+        "post_delay": 8000,
         "next": [
             "节点选择"
         ]
     },
-    "选择卡包3": {
+    "选择卡包33": {
         "recognition": "DirectHit",
         "action": {
             "type": "Swipe",
@@ -506,7 +524,7 @@
                 "duration": 500
             }
         },
-        "post_delay": 2000,
+        "post_delay": 8000,
         "next": [
             "节点选择"
         ]
@@ -524,6 +542,7 @@
                 ],
                 "threshold": 0.85
             }
+            
         },
         "action":"Click",
         "next": [
@@ -647,6 +666,7 @@
         "action": "Click",
         "post_delay": 2000,
         "next":[
+            "识别战斗页面",
             "识别加载界面(刷镜牢)"
         ]
     },
@@ -923,6 +943,7 @@
             }
         },
         "action":"Click",
+        "green_mask": true,
         "next":[
             "选李箱"
         ]
@@ -1060,7 +1081,7 @@
         "action":"Click",
         "post_delay":3000,
         "next": [
-            "选择卡包1"
+            "选择卡包31"
         ]
     },
     "镜牢结算奖励": {
@@ -1078,7 +1099,7 @@
         "action":"Click",
         "post_delay":3000,
         "next": [
-            "选择卡包1"
+            "选择卡包31"
         ]
     },
     "镜牢结算奖励领取": {
@@ -1097,7 +1118,7 @@
         "action":"Click",
         "post_delay":3000,
         "next": [
-            "选择卡包1"
+            "选择卡包31"
         ]
     },
     "确认领取镜牢结算奖励": {
