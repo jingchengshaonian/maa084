@@ -17,6 +17,7 @@ on:
       - ".github/workflows/install.yml"
       - "assets/**"
       - "**.py"
+      - "requirements.txt"
   pull_request:
     branches:
       - "**"
@@ -24,6 +25,7 @@ on:
       - ".github/workflows/install.yml"
       - "assets/**"
       - "**.py"
+      - "requirements.txt"
   workflow_dispatch:
 
 jobs:
@@ -140,7 +142,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MaaXXX-${{ matrix.os }}-${{ matrix.arch }}
+          name: myMaa084-${{ matrix.os }}-${{ matrix.arch }}
           path: "install"
 
   changelog:

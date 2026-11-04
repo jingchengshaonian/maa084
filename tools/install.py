@@ -1,7 +1,10 @@
 from pathlib import Path
 
 import shutil
+import subprocess
 import sys
+import tempfile
+import urllib.request
 
 try:
     import jsonc
@@ -27,6 +30,9 @@ if sys.argv.__len__() < 4:
 
 os_name = sys.argv[2]
 arch = sys.argv[3]
+
+# 随包分发的官方 embeddable Python，需与 agent 依赖的版本保持一致
+PYTHON_EMBED_VERSION = "3.12.10"
 
 
 def get_dotnet_platform_tag():
@@ -131,6 +137,11 @@ def install_chores():
         working_dir / "LICENSE",
         install_path,
     )
+    # 用户端首次运行由 agent 自己 pip 安装依赖，需要把清单一起打包
+    shutil.copy2(
+        working_dir / "requirements.txt",
+        install_path,
+    )
 
 
 def install_agent():
@@ -140,9 +151,85 @@ def install_agent():
         dirs_exist_ok=True,
     )
 
+    # assets/interface.json 里是开发机路径，发布包需改写为随包 Python
+    if os_name == "win":
+        with open(install_path / "interface.json", "r", encoding="utf-8") as f:
+            interface = jsonc.load(f)
+
+        interface["agent"]["child_exec"] = r"{PROJECT_DIR}/python/python.exe"
+        interface["agent"]["child_args"] = ["-u", r"{PROJECT_DIR}/agent/main.py"]
+
+        with open(install_path / "interface.json", "w", encoding="utf-8") as f:
+            jsonc.dump(interface, f, ensure_ascii=False, indent=4)
+
+
+def install_embedded_python():
+    """下载官方 embeddable Python 到 install/python，并放开 site-packages。"""
+    if os_name != "win":
+        return
+
+    python_dir = install_path / "python"
+    python_exe = python_dir / "python.exe"
+
+    if not python_exe.exists():
+        platform_tag = "amd64" if arch == "x86_64" else "arm64"
+        url = (
+            "https://www.python.org/ftp/python/"
+            f"{PYTHON_EMBED_VERSION}/python-{PYTHON_EMBED_VERSION}-embed-{platform_tag}.zip"
+        )
+        print(f"Downloading embedded Python: {url}")
+        python_dir.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory() as tmp:
+            archive = Path(tmp) / "python-embed.zip"
+            urllib.request.urlretrieve(url, archive)
+            shutil.unpack_archive(archive, python_dir)
+
+    # embeddable 默认不加载第三方库，需要手动开启 site 并加入 Lib 目录
+    pth_file = python_dir / f"python{PYTHON_EMBED_VERSION.replace('.', '')[:3]}._pth"
+    if pth_file.exists():
+        lines = [
+            line.replace("#import site", "import site")
+            for line in pth_file.read_text(encoding="utf-8").splitlines()
+        ]
+        for required in ("Lib", "Lib\\site-packages", "DLLs"):
+            if required not in lines:
+                lines.append(required)
+        pth_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def install_pip():
+    """给随包 embeddable Python 安装 pip，依赖由 agent 首次运行时自行安装。"""
+    if os_name != "win":
+        return
+
+    python_exe = install_path / "python" / "python.exe"
+    if not python_exe.exists():
+        print("Embedded Python not found, skip pip installation.")
+        return
+
+    result = subprocess.run(
+        [str(python_exe), "-m", "pip", "--version"],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode == 0:
+        print(f"pip already installed: {result.stdout.strip()}")
+        return
+
+    print("Installing pip into embedded Python ...")
+    with tempfile.TemporaryDirectory() as tmp:
+        script = Path(tmp) / "get-pip.py"
+        urllib.request.urlretrieve("https://bootstrap.pypa.io/get-pip.py", script)
+        subprocess.run(
+            [str(python_exe), str(script), "--no-warn-script-location"],
+            check=True,
+        )
+
 
 if __name__ == "__main__":
     install_deps()
+    install_embedded_python()
+    install_pip()
     install_resource()
     install_chores()
     install_agent()
