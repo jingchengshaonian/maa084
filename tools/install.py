@@ -202,28 +202,30 @@ def install_pip():
     if os_name != "win":
         return
 
-    python_exe = install_path / "python" / "python.exe"
-    if not python_exe.exists():
+    python_dir = install_path / "python"
+    site_packages = python_dir / "Lib" / "site-packages"
+    if not (python_dir / "python.exe").exists():
         print("Embedded Python not found, skip pip installation.")
         return
 
-    result = subprocess.run(
-        [str(python_exe), "-m", "pip", "--version"],
-        capture_output=True,
-        text=True,
-    )
-    if result.returncode == 0:
-        print(f"pip already installed: {result.stdout.strip()}")
+    if (site_packages / "pip").exists():
+        print("pip already bundled, skip.")
         return
 
+    # CI 构建机可能是 ubuntu，无法执行 Windows 的 python.exe，
+    # 因此用构建机的 pip 把纯 Python 的 pip 包直接放进随包 site-packages
     print("Installing pip into embedded Python ...")
-    with tempfile.TemporaryDirectory() as tmp:
-        script = Path(tmp) / "get-pip.py"
-        urllib.request.urlretrieve("https://bootstrap.pypa.io/get-pip.py", script)
-        subprocess.run(
-            [str(python_exe), str(script), "--no-warn-script-location"],
-            check=True,
-        )
+    site_packages.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [
+            sys.executable, "-m", "pip", "install",
+            "--target", str(site_packages),
+            "--upgrade",
+            "--no-warn-script-location",
+            "pip",
+        ],
+        check=True,
+    )
 
 
 if __name__ == "__main__":
