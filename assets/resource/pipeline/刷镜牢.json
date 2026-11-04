@@ -943,7 +943,6 @@
             }
         },
         "action":"Click",
-        "green_mask": true,
         "next":[
             "选李箱"
         ]
